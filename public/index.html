@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DamxStore Payment</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0a0f2c;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .marquee {
+      width: 100%;
+      background: #111;
+      color: #0ff;
+      padding: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .marquee span {
+      display: inline-block;
+      animation: scrollText 10s linear infinite;
+    }
+
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .card {
+      background: #11172f;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00f0ff66;
+      padding: 20px;
+      margin: 1rem 0;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 20px #00f0ff;
+    }
+
+    .icon-top img {
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .qr-code {
+      margin: 10px 0;
+      border-radius: 10px;
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      box-shadow: 0 0 10px #00f0ff;
+    }
+
+    h2 {
+      margin: 5px 0;
+      font-size: 20px;
+    }
+
+    .subtext {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background: #00f0ff;
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #0ff;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .whatsapp-btn {
+      margin-top: 30px;
+      background: #25D366;
+      color: #fff;
+      box-shadow: 0 0 10px #25D366;
+    }
+
+    input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    input[type="file"] {
+      background: #fff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="marquee">
+    <span>SILA SS RESIT PEMBAYARAN DAN UPLOAD RESIT DI TEMPAT YANG DISEDIAKAN TERIMA KASIH 🙏💕</span>
+  </div>
+
+  <!-- DUITNOW -->
+  <div class="card">
+    <div class="icon-top">
+      <img src="https://files.catbox.moe/zjl6nd.jpg" alt="DUITNOW" />
+    </div>
+    <h2>𝗗𝗨𝗜𝗧𝗡𝗢𝗪</h2>
+    <div class="subtext">e-Wallet</div>
+    <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=120331861205" alt="QR DuitNow" />
+    <p id="duitnow-num">120331861205</p>
+    <button class="btn" onclick="copyText('duitnow-num')">𝗦𝗔𝗟𝗜𝗡 𝗡𝗢𝗠𝗢𝗥</button>
+  </div>
+
+  <!-- TnG -->
+  <div class="card">
+    <div class="icon-top">
+      <img src="https://files.catbox.moe/0jdutz.jpg" alt="TnG" />
+    </div>
+    <h2>𝗧𝗻𝗚</h2>
+    <div class="subtext">Scan QR</div>
+    <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=601130538675" alt="QR TnG" />
+    <p id="tng-num">601130538675</p>
+    <button class="btn" onclick="copyText('tng-num')">𝗦𝗔𝗟𝗜𝗡 𝗡𝗢𝗠𝗢𝗥</button>
+  </div>
+
+  <!-- UPLOAD RESIT -->
+  <div class="card">
+    <h2>𝗨𝗣𝗟𝗢𝗔𝗗 𝗥𝗘𝗦𝗜𝗧</h2>
+    <div class="subtext">Akan dihantar ke Telegram & boleh dimuat turun</div>
+    <input type="text" id="resit-name" placeholder="Masukkan Nama">
+    <input type="text" id="resit-id" placeholder="Masukkan Nombor fon">
+    <input type="text" id="resit-item" placeholder="Masukkan Nama Item">
+    <input type="file" id="resit-img" accept="image/*">
+    <button class="btn" onclick="sendResit()">𝗛𝗔𝗡𝗧𝗔𝗥 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠</button>
+    <button class="btn" onclick="downloadResit()">📥 Muat Turun Resit</button>
+  </div>
+
+  <!-- BUTTON HUBUNGI -->
+  <a href="https://wa.me/601130538675" target="_blank">
+    <button class="btn whatsapp-btn">Chat Admin via WhatsApp</button>
+  </a>
+  <a href="https://t.me/ItmeDamx" target="_blank">
+    <button class="btn" style="background:#0088cc; color:#fff; box-shadow: 0 0 10px #0088cc;">Chat Admin via Telegram</button>
+  </a>
+
+  <!-- SCRIPT -->
+  <script>
+    function copyText(id) {
+      const element = document.getElementById(id);
+      const text = element.innerText.trim();
+      if (text) {
+        navigator.clipboard.writeText(text);
+        alert("Nomor disalin: " + text);
+      } else {
+        alert("Nomor tidak tersedia.");
+      }
+    }
+
+    async function sendResit() {
+      const name = document.getElementById("resit-name").value.trim();
+      const id = document.getElementById("resit-id").value.trim();
+      const item = document.getElementById("resit-item").value.trim();
+      const file = document.getElementById("resit-img").files[0];
+
+      const chatId = "6943312517";
+      const token = "7625259435:AAGJPd_zD_v3d252B94qfAqJ-r1wgd_1Vjc";
+
+      if (!name || !id || !item || !file) {
+        alert("Sila isi semua maklumat dan pilih gambar resit.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("chat_id", chatId);
+      formData.append("caption", `🧾 Resit Pembayaran\n👤 Nama: ${name}\n📞 No: ${id}\n📦 Item: ${item}`);
+      formData.append("photo", file);
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          alert("✅ Resit berjaya dihantar ke Telegram.");
+        } else {
+          alert("❌ Gagal hantar. Semak token atau ID.");
+        }
+      } catch (error) {
+        alert("⚠️ Ralat sambungan.");
+      }
+    }
+
+    function downloadResit() {
+      const name = document.getElementById("resit-name").value.trim();
+      const id = document.getElementById("resit-id").value.trim();
+      const item = document.getElementById("resit-item").value.trim();
+
+      if (!name || !id || !item) {
+        alert("Isi semua maklumat dahulu.");
+        return;
+      }
+
+      const content = `🧾 RESIT PEMBAYARAN DAMXSTORE\n━━━━━━━━━━━━━━\n👤 Nama: ${name}\n📞 No: ${id}\n📦 Item: ${item}\n📅 Tarikh: ${new Date().toLocaleString()}\n━━━━━━━━━━━━━━\nTerima kasih kerana support DamxStore 🫶`;
+
+      const blob = new Blob([content], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.download = "resit_damxstore.txt";
+      link.href = URL.createObjectURL(blob);
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+  </script>
+
+</body>
+</html>
