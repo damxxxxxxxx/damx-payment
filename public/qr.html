@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Bayaran - DAMX STORE</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 10px;
+      color: #0ff;
+    }
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .qr-img {
+      width: 250px;
+      height: 250px;
+      border: 4px solid #0ff;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .pay-label {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .copy-btn {
+      margin-top: 5px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0ff;
+      color: #000;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background-color: #0cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>QR Pembayaran</h1>
+
+  <div class="qr-container">
+    <div class="pay-label">DuitNow QR</div>
+    <img src="https://i.ibb.co/5vDbJvt/duitnowqr.png" alt="QR DuitNow" class="qr-img" />
+    <button class="copy-btn" onclick="copyText('601130538675')">Salin Nombor</button>
+  </div>
+
+  <div class="qr-container">
+    <div class="pay-label">TnG QR</div>
+    <img src="https://i.ibb.co/smXrRKH/tngqr.png" alt="QR TnG" class="qr-img" />
+    <button class="copy-btn" onclick="copyText('01130538675')">Salin Nombor</button>
+  </div>
+
+  <script>
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Nombor berjaya disalin: ' + text);
+      });
+    }
+  </script>
+</body>
+</html>
